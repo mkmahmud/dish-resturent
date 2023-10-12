@@ -1,7 +1,7 @@
 import Image from "next/image";
 import logo from "../../assets/logo.png";
 import Subscribe from "../Form/Subscribe/Subscribe";
-import footerImage from "../../assets/images/footer.jpg";
+import footerImage from "../../assets/images/footer.jpg"; 
 import FooterMenus from "./FooterMenus";
 import { BoldOutlined, FacebookOutlined } from "@ant-design/icons";
 import Link from "next/link";
@@ -147,7 +147,7 @@ const Footer = () => {
         </div>
         {/* copy right  */}
         <div className="pb-6">
-          <hr />
+ 
           <div className="md:flex items-center justify-between my-6">
             <p> &copy; 2023 Dish Alrights reserved </p>
             <ul className="flex ">
