@@ -12,8 +12,10 @@ import FoodCard from "@/components/UI/Cards/FoodCard/FoodCard";
 import FoodCardWithBg from "@/components/UI/Cards/FoodCard/FoodCardWithBg";
 import Image from "next/image";
 import { PlusOutlined } from "@ant-design/icons";
-
-import burger from "@/assets/food/1.jpeg";
+import whyBarger from "@/assets/images/about.png";
+import burger from "@/assets/food/b.png";
+import spoonIcon from "@/assets/icons/about/1.png";
+import ReviewCard from "@/components/UI/Cards/ReviewCard/ReviewCard";
 const imageData = [
   // Add your image data here, e.g., image URLs
   "image1.jpg",
@@ -47,7 +49,7 @@ const HomePage = () => (
       {/* Beast Sellars */}
       <div className="mt-20">
         <SectionHead title="Bestsellers" />
-        <div className="sm:px-[100px] md:px-[20px] xl:px-[200px]">
+        <div className="sm:px-[100px] md:px-[20px] xl:px-[100px]">
           <Row gutter={[16, 16]}>
             {imageData.map((image, index) => (
               <Col key={index} xs={24} sm={24} md={12} lg={8} xl={8}>
@@ -83,7 +85,7 @@ const HomePage = () => (
         style={{
           backgroundImage: `url(${burger.src})`, // Use footerImage.src
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "top",
         }}
       >
         <div
@@ -117,6 +119,58 @@ const HomePage = () => (
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      {/* Reviews */}
+      <div>
+        <SectionHead title="Reviews" />
+        <ReviewCard />
+      </div>
+      {/* About */}
+      <div className="bg-white md:flex jstify-between items-center px-6 md:px-10 text-black">
+        <div className="w-full md:w-1/2">
+          {" "}
+          <Image src={whyBarger} alt="About Us/ Why Dash" />
+        </div>
+        <div className="w-full md:w-1/2">
+          <h2 className="text-[30px] md:text-[50px] font-bold">Why Dish</h2>
+          <p className="text-[18px] py-4">
+            Learn how food from Fooma is the best and healthiest for you. We
+            serve delicious and healthy foods with your health in mind. Special
+            food for all occasions.
+          </p>
+          <ul>
+            <li className="flex items-center my-6">
+              <Image src={spoonIcon} alt="Icon" className="h-[50px] w-[50px]" />
+              <div className=" mx-4">
+                <h2 className="font-semibold text-[20px]" >Over 140 Dishes Served</h2>
+                <p className="py-2">
+                  We serve over 140 type of dishes to satisfy your taste buds
+                </p>
+              </div>
+            </li>
+             
+            <li className="flex items-center my-6">
+              <Image src={spoonIcon} alt="Icon" className="h-[50px] w-[50px]" />
+              <div className=" mx-4">
+                <h2 className="font-semibold text-[20px]" >Over 140 Dishes Served</h2>
+                <p className="py-2">
+                  We serve over 140 type of dishes to satisfy your taste buds
+                </p>
+              </div>
+            </li>
+             
+            <li className="flex items-center my-6">
+              <Image src={spoonIcon} alt="Icon" className="h-[50px] w-[50px]" />
+              <div className=" mx-4">
+                <h2 className="font-semibold text-[20px]" >Over 140 Dishes Served</h2>
+                <p className="py-2">
+                  We serve over 140 type of dishes to satisfy your taste buds
+                </p>
+              </div>
+            </li>
+             
+          </ul>
         </div>
       </div>
     </div>
