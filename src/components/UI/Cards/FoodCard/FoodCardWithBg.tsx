@@ -13,7 +13,7 @@ const FoodCardWithBg = () => {
     >
       <div>
         <h2 className="text-gray text-[16px] font-semibold ">BEEF</h2>
-        <h1 className="text-[40px] font-bold leading-none ">
+        <h1 className="text-[40px] font-bold leading-none hover:text-red ">
           Bacon+Cheese+ Green Burger
         </h1>
       </div>

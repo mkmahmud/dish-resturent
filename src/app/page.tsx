@@ -10,7 +10,10 @@ import img3 from "@/assets/icons/home3.png";
 import SectionHead from "@/components/UI/SectionHead/SectionHead";
 import FoodCard from "@/components/UI/Cards/FoodCard/FoodCard";
 import FoodCardWithBg from "@/components/UI/Cards/FoodCard/FoodCardWithBg";
+import Image from "next/image";
+import { PlusOutlined } from "@ant-design/icons";
 
+import burger from "@/assets/food/1.jpeg";
 const imageData = [
   // Add your image data here, e.g., image URLs
   "image1.jpg",
@@ -71,6 +74,49 @@ const HomePage = () => (
               <FoodCardWithBg />
             </Col>
           </Row>
+        </div>
+      </div>
+      {/* Popular */}
+
+      <div
+        className="h-[80vh] my-20"
+        style={{
+          backgroundImage: `url(${burger.src})`, // Use footerImage.src
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div
+          className="h-full w-full px-[20px] md:px-[40px] lg:px-[100px] flex flex-col  justify-center"
+          style={{ background: "linear-gradient(93deg, black, #000000bd)" }}
+        >
+          <div>
+            <h2
+              className="text-[50px] my-10 font-bold text-sectionPrimary  "
+              style={{ fontFamily: "'Rakkas', serif" }}
+            >
+              Popular SharoomBacon
+            </h2>
+            <p className="w-fll md:w-[70%] lg:w-[50%] lg:text-[20px] lg:pr-10">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
+              labore a saepe assumenda! Blanditiis natus, laboriosam reiciendis
+              hic molestias at?
+            </p>
+
+            <div className="flex justify-between items-center  w-[250px] md:w-[350px] px-6 md:px-10 py-2 bg-white rounded-full my-20">
+              <div className="text-black">
+                <h1 className="text-[30px] md:text-[40px] font-bold leading-none ">
+                  $6.97
+                </h1>
+                <p className="text-[14px]  my-2">220gr/ 600cal</p>
+              </div>
+              <div>
+                <div className="group bg-black hover:bg-red hover:border-red cursor-pointer p-4 border-black h-[70px] w-[70px] md:h-[100px] md:w-[100px] rounded-full border-4 flex justify-center items-center">
+                  <PlusOutlined className=" text-[40px] group-hover:text-[#ffffff]" />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

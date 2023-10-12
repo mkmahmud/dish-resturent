@@ -6,7 +6,7 @@ const FoodCard = () => {
   return (
     <div className="bg-white rounded-[40px] mx-4 my-6 p-6 text-black h-[650px]  overflow-hidden">
       <h2 className="text-gray text-[16px] font-semibold ">BEEF</h2>
-      <h1 className="text-[40px] font-bold leading-none">
+      <h1 className="text-[40px] font-bold leading-none hover:text-red">
         Bacon+Cheese+ Green Burger
       </h1>
       <Image src={img} alt="Burger" className="h-[300px] w-[300px] mx-auto my-10" />
