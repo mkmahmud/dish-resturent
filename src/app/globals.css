@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=RocknRoll+One&family=Young+Serif&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Rakkas&family=RocknRoll+One&family=Young+Serif&display=swap');
 /* styles/globals.css */
 @import "swiper/swiper-bundle.css";
 
@@ -29,6 +29,7 @@ body {
     )
     rgb(var(--background-start-rgb));
   font-family: "RocknRoll One", sans-serif;
+  scroll-behavior: smooth;
 }
 
 .custom-input::placeholder {

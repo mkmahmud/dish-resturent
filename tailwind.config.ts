@@ -15,6 +15,8 @@ const config: Config = {
       },
       colors: {
         red: "#ff4221",
+        sectionPrimary: "#f5e7c1",
+        gray: "#abb8c",
       },
     },
   },

@@ -14,7 +14,7 @@ const Hero = () => {
         <Image
           src={iconImage}
           alt="iconImage"
-          className="absolute left-[50%] top-[50%] -translate-y-[50%] -translate-x-[50%] rotate-45 " 
+          className="absolute left-[50%] top-[50%] -translate-y-[50%] -translate-x-[50%] rotate-45 "
         />
         <div
           className="bg-red-100 w-full md:w-1/2 relative md:pl-20"
