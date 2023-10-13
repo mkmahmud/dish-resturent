@@ -1,26 +1,37 @@
 import Image from "next/image";
-import img from "@/assets/food/burger.png"; 
+import img from "@/assets/food/burger.png";
 import { PlusOutlined } from "@ant-design/icons";
+import Link from "next/link";
 
 const FoodCard = () => {
   return (
-    <div className="bg-white rounded-[40px] mx-4 my-6 p-6 text-black h-[650px]  overflow-hidden">
-      <h2 className="text-gray text-[16px] font-semibold ">BEEF</h2>
-      <h1 className="text-[40px] font-bold leading-none hover:text-red">
-        Bacon+Cheese+ Green Burger
-      </h1>
-      <Image src={img} alt="Burger" className="h-[300px] w-[300px] mx-auto my-10" />
-      <div className="flex justify-between">
-        <div>
-          <h1 className="text-[40px] font-bold leading-none">$6.97</h1>
-          <p className="text-[16px] text-gray my-2">220gr/ 600cal</p>
-        </div>
-        <div>
-          <div className="group hover:bg-red cursor-pointer p-4 border-red h-[100px] w-[100px] rounded-full border-4 flex justify-center items-center">
-            <PlusOutlined className="text-[#ff4221] text-[40px] group-hover:text-[#ffffff]" />
+    <div className="bg-white rounded-[40px] mx-4 my-6 p-6 text-black  min-w-[300px] max-w-[400px] mx-auto overflow-hidden">
+      <Link href="/productDetails/2" className="text-black hover:text-black">
+        <h2 className="text-gray text-[16px] font-semibold ">BEEF</h2>
+        <h1 className="text-[30px] md:text-[25px] xl:text-[40px] font-bold leading-none hover:text-red">
+          Bacon Cheese Green Burger
+        </h1>
+        <Image
+          src={img}
+          alt="Burger"
+          className="h-[200px] w-[200px] xl:h-[300px] xl:w-[300px] mx-auto my-10"
+        />
+        <div className="flex justify-between">
+          <div>
+            <h1 className="text-[30px] xl:text-[40px] font-bold leading-none">
+              $6.97
+            </h1>
+            <p className="text-[14px] xl:text-[16px] text-gray my-2">
+              220gr/ 600cal
+            </p>
+          </div>
+          <div>
+            <div className="group hover:bg-red cursor-pointer p-4 border-red h-[60px] w-[60px] xl:h-[80px] xl:w-[80px] rounded-full border-4 flex justify-center items-center">
+              <PlusOutlined className="text-[#ff4221] text-[30px] xl:text-[35px] group-hover:text-[#ffffff]" />
+            </div>
           </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };

@@ -16,6 +16,9 @@ import whyBarger from "@/assets/images/about.png";
 import burger from "@/assets/food/b.png";
 import spoonIcon from "@/assets/icons/about/1.png";
 import ReviewCard from "@/components/UI/Cards/ReviewCard/ReviewCard";
+import tomato from "@/assets/images/bgImages/tomato.png";
+import cheese from "@/assets/images/bgImages/cheese.png";
+
 const imageData = [
   // Add your image data here, e.g., image URLs
   "image1.jpg",
@@ -49,7 +52,7 @@ const HomePage = () => (
       {/* Beast Sellars */}
       <div className="mt-20">
         <SectionHead title="Bestsellers" />
-        <div className="sm:px-[100px] md:px-[20px] xl:px-[100px]">
+        <div className="sm:px-[20px] md:px-[20px] xl:px-[100px]">
           <Row gutter={[16, 16]}>
             {imageData.map((image, index) => (
               <Col key={index} xs={24} sm={24} md={12} lg={8} xl={8}>
@@ -127,49 +130,78 @@ const HomePage = () => (
         <ReviewCard />
       </div>
       {/* About */}
-      <div className="bg-white md:flex jstify-between items-center px-6 md:px-10 text-black">
-        <div className="w-full md:w-1/2">
-          {" "}
-          <Image src={whyBarger} alt="About Us/ Why Dash" />
+      <div className="bg-white md:flex jstify-between items-center px-6 md:px-10 text-black relative py-40">
+        
+        <div className="w-full md:w-1/2 relative  ">
+        <Image
+          src={cheese}
+          alt="About Us/ Why Dash"
+          className="absolute -top-40 right-0 h-[200px] w-[200px]"
+        />
+        <Image
+          src={tomato}
+          alt="About Us/ Why Dash"
+          className="absolute -bottom-10 -left-10 h-[200px] w-[200px]"
+        />
+          <Image src={whyBarger} alt="About Us/ Why Dash" className="w-[500px] block mx-auto"/>
         </div>
-        <div className="w-full md:w-1/2">
-          <h2 className="text-[30px] md:text-[50px] font-bold">Why Dish</h2>
+        <div
+          className="w-full md:w-1/2"
+          style={{ fontFamily: "'RocknRoll One', sans-serif" }}
+        >
+          <h2 className="text-[30px] md:text-[50px] font-bold">Why Dish ?</h2>
           <p className="text-[18px] py-4">
             Learn how food from Fooma is the best and healthiest for you. We
             serve delicious and healthy foods with your health in mind. Special
             food for all occasions.
           </p>
           <ul>
-            <li className="flex items-center my-6">
+            <li className="flex items-center my-10">
               <Image src={spoonIcon} alt="Icon" className="h-[50px] w-[50px]" />
               <div className=" mx-4">
-                <h2 className="font-semibold text-[20px]" >Over 140 Dishes Served</h2>
+                <h2 className="font-semibold text-[20px]">
+                  Over 140 Dishes Served
+                </h2>
                 <p className="py-2">
                   We serve over 140 type of dishes to satisfy your taste buds
                 </p>
               </div>
             </li>
-             
-            <li className="flex items-center my-6">
+
+            <li className="flex items-center my-10">
               <Image src={spoonIcon} alt="Icon" className="h-[50px] w-[50px]" />
               <div className=" mx-4">
-                <h2 className="font-semibold text-[20px]" >Over 140 Dishes Served</h2>
+                <h2 className="font-semibold text-[20px]">
+                  Over 140 Dishes Served
+                </h2>
                 <p className="py-2">
                   We serve over 140 type of dishes to satisfy your taste buds
                 </p>
               </div>
             </li>
-             
-            <li className="flex items-center my-6">
+
+            <li className="flex items-center my-10">
               <Image src={spoonIcon} alt="Icon" className="h-[50px] w-[50px]" />
               <div className=" mx-4">
-                <h2 className="font-semibold text-[20px]" >Over 140 Dishes Served</h2>
+                <h2 className="font-semibold text-[20px]">
+                  Over 140 Dishes Served
+                </h2>
                 <p className="py-2">
                   We serve over 140 type of dishes to satisfy your taste buds
                 </p>
               </div>
             </li>
-             
+            <li className="flex items-center my-10">
+              <Image src={spoonIcon} alt="Icon" className="h-[50px] w-[50px]" />
+              <div className=" mx-4">
+                <h2 className="font-semibold text-[20px]">
+                  Over 140 Dishes Served
+                </h2>
+                <p className="py-2">
+                  We serve over 140 type of dishes to satisfy your taste buds
+                </p>
+              </div>
+            </li>
           </ul>
         </div>
       </div>

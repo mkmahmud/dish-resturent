@@ -6,6 +6,11 @@ const theme: ThemeConfig = {
     fontSize: 16,
     colorPrimary: "#52c41a",
   },
+  components: {
+    Pagination: {
+      itemInputBg: "#FFFFFF",
+    },
+  },
 };
 
 export default theme;

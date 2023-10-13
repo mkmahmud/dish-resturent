@@ -5,7 +5,7 @@ import Image from "next/image";
 const ReviewCard = () => {
   return (
     <div>
-      <div className="mx-10 leading-none md:flex items-center md:w-[60%] mx-auto my-10">
+      <div className="mx-10 leading-none lg:flex items-center md:w-[60%] mx-auto my-10">
         <Image alt="Review" src={img} />
         <div className="my-10 mx-10 ">
           <h1 className="text-[50px]   font-bold text-sectionPrimary">
@@ -14,7 +14,7 @@ const ReviewCard = () => {
           <p className="my-2">@casey</p>
         </div>
       </div>
-      <div className="mx-10 leading-none md:flex items-center md:w-[60%] mx-auto my-10">
+      <div className="mx-10 leading-none lg:flex items-center md:w-[60%] mx-auto my-10">
         <div className="my-10 mx-10 ">
           <h1 className="text-[50px]   font-bold text-sectionPrimary">
             "I don't remember a single mouthful I didn't enjoy!"

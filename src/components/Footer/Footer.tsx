@@ -28,7 +28,7 @@ const Footer = () => {
           <Image
             src={logo}
             alt="Image"
-            className="block mx-auto"
+            className="block mx-auto bg-white rounded-full p-2"
             height={150}
           />
           <h2 className="text-[20px] md:text-[30px] font-bold my-4 text-white">
