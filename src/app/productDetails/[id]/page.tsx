@@ -5,9 +5,16 @@ import { useParams } from "next/navigation";
 import bgImage from "@/assets/images/menu.png";
 import Image from "next/image";
 import burger from "@/assets/food/1.jpeg";
-import { Button, Input } from "antd";
+import { Button, Col, Input, Row } from "antd";
 import MiniCart from "@/components/UI/Cards/Cart/MiniCart/MiniCart";
-import { TagOutlined, FacebookOutlined } from "@ant-design/icons";
+import { TagOutlined, FacebookOutlined, StarOutlined } from "@ant-design/icons";
+import FoodCard from "@/components/UI/Cards/FoodCard/FoodCard";
+
+const imageData = [
+  // Add your image data here, e.g., image URLs
+  "image1.jpg",
+  "image3.jpg",
+];
 
 const page = () => {
   const { id } = useParams();
@@ -51,11 +58,13 @@ const page = () => {
                 <Image
                   alt="Details"
                   src={burger}
-                  className="w-[400px] h-[400px] rounded "
+                  className="w-[400px] h-[400px] rounded block mx-auto"
                 />
                 <div className="mx-4 ">
-                  <h2 className="text-[50px]">$6.00</h2>
-                  <div className="mt-6">
+                  <h2 className="text-[50px] text-center my-4 md:text-left">
+                    $6.00
+                  </h2>
+                  <div className="mt-6 text-center md:text-left">
                     <strong className="text-[18px] ">Ingredients:</strong>
                     <p className="my-2">
                       onion, oregano, bacon, cheese, ketchup, mustard, green
@@ -69,7 +78,7 @@ const page = () => {
                 </div>
               </div>
               <div className="my-10">
-                <h2 className="text-[50px] my-4">Description</h2>
+                <h2 className="text-[50px] my-4 font-bold">Description</h2>
                 <p>
                   Jerky pork chop doner, cow beef kielbasa andouille pig
                   drumstick. Swine salami capicola jowl, tongue prosciutto chuck
@@ -80,7 +89,7 @@ const page = () => {
                 </p>
               </div>
               <div className="md:flex justify-between items-center my-6">
-                <ul className="flex justify-between items-center">
+                <ul className="flex  items-center">
                   <li className="mx-2">
                     <TagOutlined /> <span>Bacon</span>
                   </li>
@@ -94,9 +103,56 @@ const page = () => {
                   </li>
                 </ul>
               </div>
+
+              {/* Related Products */}
+              <div className="mt-10">
+                <h2 className="text-[50px] my-4 font-bold">Related Product</h2>
+
+                <Row gutter={[16, 16]}>
+                  {imageData.map((image, index) => (
+                    <Col key={index} xs={24} sm={24} md={24} lg={12} xl={12}>
+                      <FoodCard />
+                    </Col>
+                  ))}
+                </Row>
+              </div>
+              {/* Reviews */}
+              <div className="mt-20">
+                <h2 className="text-[50px] my-4 font-bold">Reviews</h2>
+                <div>
+                  <p>There Is No Review Yet</p>
+                </div>
+              </div>
+              {/* Write  a review */}
+              <div className="mb-20">
+                <h2 className="text-[30px] my-4 font-bold">Write a Review</h2>
+                <form>
+                  <div className="text-[18px] my-6">
+                    <p className="py-2">Your Rating</p>
+                    <div className="flex  space-x-2">
+                      <StarOutlined />
+                      <StarOutlined />
+                      <StarOutlined />
+                      <StarOutlined />
+                      <StarOutlined />
+                    </div>
+                  </div>
+                  <div className="text-[18px] my-6">
+                    <p className="py-2">Your Review</p>
+                    <textarea
+                      name="review"
+                      id=""
+                      cols={8}
+                      rows={10}
+                      className="bg-transparent border border-gray rounded-lg w-full"
+                    ></textarea>
+                  </div>
+                  <Button type="primary"> SUBMIT </Button>
+                </form>
+              </div>
             </div>
           </div>
-          <div className="hidden md:block md:w-3/12">
+          <div className="hidden md:block md:w-3/12 px-2">
             <div className="max-w-[300px]">
               <h2 className="text-[60px] font-bold">Cart</h2>
               <div>
