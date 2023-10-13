@@ -25,14 +25,14 @@ const page = () => {
   return (
     <div>
       <div
-        className="h-[200px] bg-white w-full mb-10 flex items-center"
+        className="h-[300px] bg-white w-full mb-10 flex items-end	 absolute top-0"
         style={{
           backgroundImage: `url(${bgImage.src})`, // Use footerImage.src
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
-        <div className="h-full w-full bg-[#00000085]">
+        <div className="h-full w-full bg-[#00000085] pt-[100px]">
           <SectionHead title="Our Menu" />
           <div>
             <ul className="flex justify-center items-center text-white">
@@ -54,7 +54,7 @@ const page = () => {
         </div>
       </div>
 
-      <div className="">
+      <div className="mt-[300px]">
         {/*  Products */}
 
         <div className="md:flex px-4 lg:px-10 w-full">
@@ -101,7 +101,7 @@ const page = () => {
           </div>
 
           <div className="w-full md:w-10/12 px-2 md:px-6">
-            <div className="flex justify-between items-center text-[20px]     mx-auto py-2 px-4 border  border-white rounded-lg">
+            <div className="md:flex justify-between items-center text-[20px]     mx-auto py-2 px-4 border  border-white rounded-lg">
               <div className="flex">
                 <p className="pr-2">ShortBy </p>
                 <Space wrap>
