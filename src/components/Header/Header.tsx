@@ -8,10 +8,61 @@ import {
   CloseOutlined,
   ShoppingCartOutlined,
   UserOutlined,
+  LoginOutlined,
 } from "@ant-design/icons";
-import { Button } from "antd";
+import { Button, Dropdown, MenuProps } from "antd";
+import { getSession, useSession } from "next-auth/react";
+
+const handleMenuClick: MenuProps["onClick"] = (e) => {
+  console.log("click", e);
+};
+
+const items: MenuProps["items"] = [
+  {
+    key: "1",
+    label: (
+      <Link rel="noopener noreferrer" href="/profile">
+        Profile
+      </Link>
+    ),
+  },
+  {
+    key: "2",
+    label: (
+      <Link rel="noopener noreferrer" href="/profile">
+        Settings
+      </Link>
+    ),
+  },
+  {
+    key: "3",
+    label: (
+      <Link rel="noopener noreferrer" href="/profile">
+        Orders
+      </Link>
+    ),
+  },
+  {
+    key: "4",
+    label: (
+      <Link rel="noopener noreferrer" href="/api/auth/signout">
+        <Button type="primary" danger>
+          Sign Out
+        </Button>
+      </Link>
+    ),
+  },
+];
+
+const menuProps = {
+  items,
+  onClick: handleMenuClick,
+};
 
 const Navbar = () => {
+  //user
+  const { data } = useSession();
+console.log(data);
   // Mobile Menu
   const [mobileMenu, setMobileMenu] = useState(false);
   // Menus
@@ -69,7 +120,13 @@ const Navbar = () => {
               </div>
               <div>
                 <Link href="/profile" className="text-black">
-                  <UserOutlined className="text-[30px] mx-4 " />
+                  <Dropdown.Button
+                    menu={menuProps}
+                    placement="bottom"
+                    icon={<UserOutlined />}
+                  >
+                    Dropdown
+                  </Dropdown.Button>
                 </Link>
               </div>
             </div>
@@ -115,9 +172,21 @@ const Navbar = () => {
                 </Link>
               </div>
               <div>
-                <Link href="/profile" className="text-black">
-                  <UserOutlined className="text-[30px] mx-2" />
-                </Link>
+                {data ? (
+                  <Dropdown menu={{ items }} placement="bottom" arrow>
+                    <UserOutlined
+                      className="text-[30px] cursor-pointer "
+                      style={{ color: "#ff4221" }}
+                    />
+                  </Dropdown>
+                ) : (
+                  <Link href="/profile" className="text-black">
+                    <button className="bg-red px-4 py-2 text-[18px] text-white rounded-full flex items-center">
+                      {" "}
+                      <span className="px-2">Sign In</span> <LoginOutlined />
+                    </button>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
