@@ -1,5 +1,6 @@
 "use client";
 import { Table } from "antd"; 
+import Link from "next/link";
 const dataSource = [
   {
     key: "1",
@@ -55,7 +56,7 @@ const page = () => {
         <h2 className="text-[20px] ">Manage my account</h2>
         <div className="md:flex">
           <div className="p-4 bg-white text-black my-4 w-full md:w-1/2">
-            <h2 className="py-4 text-[16px] font-semibold">Personal Profile</h2>
+            <h2 className="py-4 text-[16px] font-semibold">Personal Profile <Link href='/profile/edit'>[ Edit ]</Link></h2>
             <h2 className=" text-[16px]">Mahmudul Hasan MK</h2>
             <h2 className=" text-[16px]">mahmudul@gmail.com</h2>
           </div>

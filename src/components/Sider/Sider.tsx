@@ -45,12 +45,12 @@ const Sider = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/" className="text-white my-2">
-                  Address Book
+                <Link href="/trackorder" className="text-white my-2">
+                  Track My Order
                 </Link>
               </li>
               <li>
-                <Link href="/" className="text-white my-2">
+                <Link href="/paymentoptions" className="text-white my-2">
                   My payment Options
                 </Link>
               </li>

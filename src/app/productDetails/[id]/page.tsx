@@ -9,6 +9,7 @@ import { Button, Col, Input, Row } from "antd";
 import MiniCart from "@/components/UI/Cards/Cart/MiniCart/MiniCart";
 import { TagOutlined, FacebookOutlined, StarOutlined } from "@ant-design/icons";
 import FoodCard from "@/components/UI/Cards/FoodCard/FoodCard";
+import { useEffect, useState } from "react";
 
 const imageData = [
   // Add your image data here, e.g., image URLs
@@ -18,6 +19,24 @@ const imageData = [
 
 const page = () => {
   const { id } = useParams();
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    fetch(`https://dish-backend.vercel.app/products/2`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setData(data[0]);
+        const myData = data[0];
+      })
+      .catch((error) => {
+        console.error("Error Fetching data:", error);
+      });
+  }, [id]);
 
   return (
     <div>
@@ -30,7 +49,7 @@ const page = () => {
         }}
       >
         <div className="h-full w-full bg-[#00000085] pt-[100px]">
-          <SectionHead title="Bacon Cheese Green Burger" />
+          <SectionHead title={data && data.name} />
           <div>
             <ul className="flex justify-center items-center text-white">
               <li className="mx-2 ">
@@ -57,18 +76,23 @@ const page = () => {
               <div className="md:flex justify-center">
                 <Image
                   alt="Details"
-                  src={burger}
+                  src={data && data.img}
+                  height={200}
+                  width={200}
                   className="w-[400px] h-[400px] rounded block mx-auto"
                 />
                 <div className="mx-4 ">
                   <h2 className="text-[50px] text-center my-4 md:text-left">
-                    $6.00
+                    ${data && data.price}
                   </h2>
                   <div className="mt-6 text-center md:text-left">
                     <strong className="text-[18px] ">Ingredients:</strong>
                     <p className="my-2">
-                      onion, oregano, bacon, cheese, ketchup, mustard, green
-                      salad
+                      {data &&
+                        data.ingredients &&
+                        data.ingredients.map((i: any) => {
+                          return <span className="mx-2">{i}</span>;
+                        })}
                     </p>
                   </div>
                   <div>
@@ -79,23 +103,19 @@ const page = () => {
               </div>
               <div className="my-10">
                 <h2 className="text-[50px] my-4 font-bold">Description</h2>
-                <p>
-                  Jerky pork chop doner, cow beef kielbasa andouille pig
-                  drumstick. Swine salami capicola jowl, tongue prosciutto chuck
-                  chislic spare ribs kevin turducken. Doner fatback turkey
-                  picanha, pork belly jerky leberkas burgdoggen. Meatloaf pork
-                  venison rump shank pork belly pig tri-tip spare ribs drumstick
-                  shankle hamburger chicken strip steak.
-                </p>
+                <p>{data && data.description}</p>
               </div>
               <div className="md:flex justify-between items-center my-6">
                 <ul className="flex  items-center">
-                  <li className="mx-2">
-                    <TagOutlined /> <span>Bacon</span>
-                  </li>
-                  <li className="mx-2">
-                    <TagOutlined /> <span>Bacon</span>
-                  </li>
+                  {data &&
+                    data.ingredients &&
+                    data.ingredients.map((i: any) => {
+                      return (
+                        <li className="mx-2">
+                          <TagOutlined /> <span>{i}</span>
+                        </li>
+                      );
+                    })}
                 </ul>
                 <ul className="flex justify-between items-center">
                   <li className="mx-2">
@@ -107,14 +127,14 @@ const page = () => {
               {/* Related Products */}
               <div className="mt-10">
                 <h2 className="text-[50px] my-4 font-bold">Related Product</h2>
-
+                {/* 
                 <Row gutter={[16, 16]}>
                   {imageData.map((image, index) => (
                     <Col key={index} xs={24} sm={24} md={24} lg={12} xl={12}>
                       <FoodCard />
                     </Col>
                   ))}
-                </Row>
+                </Row> */}
               </div>
               {/* Reviews */}
               <div className="mt-20">

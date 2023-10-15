@@ -6,15 +6,7 @@ import { Breadcrumb, Col, Pagination, Row, Select, Space } from "antd";
 import Search from "antd/es/input/Search";
 import bgImage from "@/assets/images/menu.png";
 import Link from "next/link";
-const imageData = [
-  // Add your image data here, e.g., image URLs
-  "image1.jpg",
-  "image2.jpg",
-  "image3.jpg",
-  "image3.jpg",
-  "image3.jpg",
-  "image3.jpg",
-];
+import { useEffect, useState } from "react";
 
 const handleChange = (value: string) => {
   console.log(`selected ${value}`);
@@ -22,6 +14,17 @@ const handleChange = (value: string) => {
 const onSearch = (value: any) => console.log(value);
 
 const page = () => {
+  const [imageData, setimageData] = useState([]);
+
+  useEffect(() => {
+    fetch("https://dish-backend.vercel.app/products/")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setimageData(data);
+      });
+  }, []);
+
   return (
     <div>
       <div
@@ -150,7 +153,7 @@ const page = () => {
             <Row gutter={[16, 16]}>
               {imageData.map((image, index) => (
                 <Col key={index} xs={24} sm={12} md={12} lg={8} xl={8}>
-                  <FoodCard />
+                  <FoodCard data={image} />
                 </Col>
               ))}
             </Row>

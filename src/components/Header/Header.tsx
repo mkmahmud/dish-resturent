@@ -62,8 +62,7 @@ const menuProps = {
 const Navbar = () => {
   //user
   const { data } = useSession();
-console.log(data);
-  // Mobile Menu
+   // Mobile Menu
   const [mobileMenu, setMobileMenu] = useState(false);
   // Menus
   const menus = ["Home", "Menu", "About", "Services", "Contact"];
