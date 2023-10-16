@@ -1,21 +1,16 @@
 import { MongoDBConnect } from "@/lib/mongoDB";
 import CustomUser from "@/modules/user";
-import User from "@/modules/user";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: {
-  json: () =>
-    | PromiseLike<{
-        email: any;
-        phoneNumber: any;
-        username: any;
-        password: any;
-      }>
-    | { email: any; phoneNumber: any; username: any; password: any };
-}) {
+export async function POST(req: NextRequest) {
   try {
-    const { email, phoneNumber, username, password } = await req.json();
+    const body = await req.text(); // Read the text from the request body
+    const requestBody = JSON.parse(body); // Parse the JSON text
+
+    const { email, phoneNumber, username, password } = requestBody;
+
     await MongoDBConnect();
+
     await CustomUser.create({
       email: email,
       phoneNumber: phoneNumber,
