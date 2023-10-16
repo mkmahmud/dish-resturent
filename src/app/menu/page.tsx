@@ -6,14 +6,14 @@ import { Breadcrumb, Col, Pagination, Row, Select, Space } from "antd";
 import Search from "antd/es/input/Search";
 import bgImage from "@/assets/images/menu.png";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"; // Import React and React Hooks
 
 const handleChange = (value: string) => {
   console.log(`selected ${value}`);
 };
 const onSearch = (value: any) => console.log(value);
 
-const page = () => {
+const Page = () => {
   const [imageData, setimageData] = useState([]);
 
   useEffect(() => {
@@ -172,4 +172,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

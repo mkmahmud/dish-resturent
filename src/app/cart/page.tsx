@@ -1,7 +1,7 @@
 "use client";
 import SectionHead from "@/components/UI/SectionHead/SectionHead";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useRouter } from "next/router"; // Import the useRouter hook
 import bgImage from "@/assets/images/menu.png";
 import { TagOutlined, FacebookOutlined, StarOutlined } from "@ant-design/icons";
 import Image from "next/image";
@@ -15,7 +15,8 @@ const imageData = [
 ];
 
 const page = () => {
-  const { id } = useParams();
+  const router = useRouter();
+  const { id } = router.query;
 
   return (
     <div>

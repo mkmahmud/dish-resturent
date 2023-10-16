@@ -80,7 +80,7 @@ const LogIn = () => {
           <p className="px-2">Log In</p>
         </button>
         <h2 className="text-[16px] py-10 text-center">
-          Doesn't In Dish{" "}
+          Does not In Dish{" "}
           <Link
             href="/signup"
             className="font-bold underline text-white hover:text-white"

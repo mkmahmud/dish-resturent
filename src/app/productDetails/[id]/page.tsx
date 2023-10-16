@@ -17,7 +17,7 @@ const imageData = [
   "image3.jpg",
 ];
 
-const page = () => {
+const Page = () => {
   const { id } = useParams();
   const [data, setData] = useState({});
 
@@ -196,4 +196,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
