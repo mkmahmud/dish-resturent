@@ -11,7 +11,6 @@ import {
   LoginOutlined,
 } from "@ant-design/icons";
 import { Button, Dropdown, MenuProps } from "antd";
-import { getSession, useSession } from "next-auth/react";
 
 const handleMenuClick: MenuProps["onClick"] = (e) => {
   console.log("click", e);
@@ -61,8 +60,8 @@ const menuProps = {
 
 const Navbar = () => {
   //user
-  const { data } = useSession();
-   // Mobile Menu
+
+  // Mobile Menu
   const [mobileMenu, setMobileMenu] = useState(false);
   // Menus
   const menus = ["Home", "Menu", "About", "Services", "Contact"];
@@ -171,21 +170,21 @@ const Navbar = () => {
                 </Link>
               </div>
               <div>
-                {data ? (
+                {/* {data ? (
                   <Dropdown menu={{ items }} placement="bottom" arrow>
                     <UserOutlined
                       className="text-[30px] cursor-pointer "
                       style={{ color: "#ff4221" }}
                     />
                   </Dropdown>
-                ) : (
-                  <Link href="/profile" className="text-black">
-                    <button className="bg-red px-4 py-2 text-[18px] text-white rounded-full flex items-center">
-                      {" "}
-                      <span className="px-2">Sign In</span> <LoginOutlined />
-                    </button>
-                  </Link>
-                )}
+                ) : ( */}
+                <Link href="/profile" className="text-black">
+                  <button className="bg-red px-4 py-2 text-[18px] text-white rounded-full flex items-center">
+                    {" "}
+                    <span className="px-2">Sign In</span> <LoginOutlined />
+                  </button>
+                </Link>
+                {/* )} */}
               </div>
             </div>
           </div>

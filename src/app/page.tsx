@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import { Button, Col, ConfigProvider, Row } from "antd";
 import theme from "@/theme/themeConfig";
@@ -20,26 +20,16 @@ import ReviewCard from "@/components/UI/Cards/ReviewCard/ReviewCard";
 import tomato from "@/assets/images/bgImages/tomato.png";
 import cheese from "@/assets/images/bgImages/cheese.png";
 
-const imageData = [
-  // Add your image data here, e.g., image URLs
-  "image1.jpg",
-  "image2.jpg",
-  "image3.jpg",
-];
-
 const HomePage = () => {
-
   const [imageData, setimageData] = useState([]);
 
   useEffect(() => {
     fetch("https://dish-backend.vercel.app/products/")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setimageData(data);
       });
   }, []);
-
 
   return (
     <ConfigProvider theme={theme}>
@@ -68,37 +58,37 @@ const HomePage = () => {
         <div className="mt-20">
           <SectionHead title="Bestsellers" />
           <div className="sm:px-[20px] md:px-[20px] xl:px-[100px]">
-          <Row gutter={[16, 16]}>
-            {imageData.slice(0, 3).map((image, index) => (
-              <Col key={index} xs={24} sm={24} md={12} lg={8} xl={8}>
-                <FoodCard data={image} />
-              </Col>
-            ))}
-          </Row>
-          {imageData.length && (
-            <>
-              <Row gutter={[16, 16]}>
-                <Col xs={24} sm={24} md={12} lg={12} xl={16}>
-                  <FoodCardWithBg />
+            <Row gutter={[16, 16]}>
+              {imageData.slice(0, 3).map((image, index) => (
+                <Col key={index} xs={24} sm={24} md={12} lg={8} xl={8}>
+                  <FoodCard data={image} />
                 </Col>
-                <Col xs={24} sm={24} md={12} lg={12} xl={8}>
-                  <FoodCard data={imageData[3]} />
-                </Col>
-              </Row>
-              <Row gutter={[16, 16]}>
-                <Col xs={24} sm={24} md={12} lg={8} xl={6}>
-                  <FoodCard data={imageData[2]} />
-                </Col>
-                <Col xs={24} sm={24} md={12} lg={8} xl={6}>
-                  <FoodCard data={imageData[1]} />
-                </Col>
-                <Col xs={24} sm={24} md={12} lg={8} xl={12}>
-                  <FoodCardWithBg />
-                </Col>
-              </Row>
-            </>
-          )}
-        </div>
+              ))}
+            </Row>
+            {imageData.length && (
+              <>
+                <Row gutter={[16, 16]}>
+                  <Col xs={24} sm={24} md={12} lg={12} xl={16}>
+                    <FoodCardWithBg />
+                  </Col>
+                  <Col xs={24} sm={24} md={12} lg={12} xl={8}>
+                    <FoodCard data={imageData[3]} />
+                  </Col>
+                </Row>
+                <Row gutter={[16, 16]}>
+                  <Col xs={24} sm={24} md={12} lg={8} xl={6}>
+                    <FoodCard data={imageData[2]} />
+                  </Col>
+                  <Col xs={24} sm={24} md={12} lg={8} xl={6}>
+                    <FoodCard data={imageData[1]} />
+                  </Col>
+                  <Col xs={24} sm={24} md={12} lg={8} xl={12}>
+                    <FoodCardWithBg />
+                  </Col>
+                </Row>
+              </>
+            )}
+          </div>
         </div>
         {/* Popular */}
 

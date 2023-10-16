@@ -1,7 +1,7 @@
 import Image from "next/image";
 import logo from "../../assets/logo.png";
 import Subscribe from "../Form/Subscribe/Subscribe";
-import footerImage from "../../assets/images/footer.jpg"; 
+import footerImage from "../../assets/images/footer.jpg";
 import FooterMenus from "./FooterMenus";
 import { BoldOutlined, FacebookOutlined } from "@ant-design/icons";
 import Link from "next/link";
@@ -23,7 +23,7 @@ const Footer = () => {
         style={{ backdropFilter: "blur(5px)", zIndex: 1 }}
       ></div>
 
-      <div className="m-10 text-center w-full relative z-10">
+      <div className="  text-center w-full relative z-10  ">
         <div>
           <Image
             src={logo}
@@ -39,7 +39,7 @@ const Footer = () => {
           </p>
           <Subscribe />
         </div>
-        <div className="md:flex justify-between	px-4 md:px-10 my-20">
+        <div className="md:flex justify-between	  my-20">
           <div>
             <FooterMenus head="let's get together">
               <div>
@@ -147,7 +147,6 @@ const Footer = () => {
         </div>
         {/* copy right  */}
         <div className="pb-6">
- 
           <div className="md:flex items-center justify-between my-6">
             <p> &copy; 2023 Dish Alrights reserved </p>
             <ul className="flex ">

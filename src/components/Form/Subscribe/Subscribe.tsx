@@ -25,7 +25,7 @@ const Subscribe = () => (
         <Button
           type="primary"
           style={{
-            backgroundColor: "#ff6c00",
+            backgroundColor: "#ff4221",
             border: "none",
             borderRadius: "0px 100px 100px 0px", 
           }}
