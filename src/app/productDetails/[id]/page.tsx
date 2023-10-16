@@ -4,18 +4,10 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import bgImage from "@/assets/images/menu.png";
 import Image from "next/image";
-import burger from "@/assets/food/1.jpeg";
-import { Button, Col, Input, Row } from "antd";
+import { Button } from "antd";
 import MiniCart from "@/components/UI/Cards/Cart/MiniCart/MiniCart";
 import { TagOutlined, FacebookOutlined, StarOutlined } from "@ant-design/icons";
-import FoodCard from "@/components/UI/Cards/FoodCard/FoodCard";
 import { useEffect, useState } from "react";
-
-const imageData = [
-  // Add your image data here, e.g., image URLs
-  "image1.jpg",
-  "image3.jpg",
-];
 
 const Page = () => {
   const { id } = useParams();
@@ -90,8 +82,12 @@ const Page = () => {
                     <p className="my-2">
                       {data &&
                         data.ingredients &&
-                        data.ingredients.map((i: any) => {
-                          return <span className="mx-2">{i}</span>;
+                        data.ingredients.map((i: any, index: any) => {
+                          return (
+                            <span className="mx-2" key={index}>
+                              {i}
+                            </span>
+                          );
                         })}
                     </p>
                   </div>
@@ -109,9 +105,9 @@ const Page = () => {
                 <ul className="flex  items-center">
                   {data &&
                     data.ingredients &&
-                    data.ingredients.map((i: any) => {
+                    data.ingredients.map((i: any, index: any) => {
                       return (
-                        <li className="mx-2">
+                        <li className="mx-2" key={index}>
                           <TagOutlined /> <span>{i}</span>
                         </li>
                       );
@@ -127,14 +123,6 @@ const Page = () => {
               {/* Related Products */}
               <div className="mt-10">
                 <h2 className="text-[50px] my-4 font-bold">Related Product</h2>
-                {/* 
-                <Row gutter={[16, 16]}>
-                  {imageData.map((image, index) => (
-                    <Col key={index} xs={24} sm={24} md={24} lg={12} xl={12}>
-                      <FoodCard />
-                    </Col>
-                  ))}
-                </Row> */}
               </div>
               {/* Reviews */}
               <div className="mt-20">
