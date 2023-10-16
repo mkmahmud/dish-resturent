@@ -1,17 +1,26 @@
 "use client";
-import SectionHead from "@/components/UI/SectionHead/SectionHead";
-import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import bgImage from "@/assets/images/menu.png";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "antd";
+import burgerImg from "@/assets/food/burger.png";
 import MiniCart from "@/components/UI/Cards/Cart/MiniCart/MiniCart";
 import { TagOutlined, FacebookOutlined, StarOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
+import SectionHead from "@/components/UI/SectionHead/SectionHead";
+import bgImage from "@/assets/images/menu.png";
+
+interface ProductData {
+  name?: string;
+  price?: number;
+  ingredients?: string[];
+  description?: string;
+  img?: string;
+}
 
 const Page = () => {
   const { id } = useParams();
-  const [data, setData] = useState({});
+  const [data, setData] = useState<ProductData>({});
 
   useEffect(() => {
     fetch(`https://dish-backend.vercel.app/products/2`)
@@ -33,9 +42,9 @@ const Page = () => {
   return (
     <div>
       <div
-        className="h-[300px] bg-white w-full mb-10 flex items-end	 absolute top-0"
+        className="h-[300px] bg-white w-full mb-10 flex items-end absolute top-0"
         style={{
-          backgroundImage: `url(${bgImage.src})`, // Use footerImage.src
+          backgroundImage: `url(${bgImage.src})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -61,14 +70,14 @@ const Page = () => {
           </div>
         </div>
       </div>
-      <div className="   bg-sectionPrimary text-black p-2 mt-[200px] pt-20">
+      <div className="bg-sectionPrimary text-black p-2 mt-[200px] pt-20">
         <div className="md:flex">
           <div className="w-full md:w-9/12">
             <div className="max-w-[800px] mx-auto">
               <div className="md:flex justify-center">
                 <Image
                   alt="Details"
-                  src={data && data.img}
+                  src={data && data.img ? data.img : burgerImg}
                   height={200}
                   width={200}
                   className="w-[400px] h-[400px] rounded block mx-auto"
@@ -84,9 +93,9 @@ const Page = () => {
                         data.ingredients &&
                         data.ingredients.map((i: any, index: any) => {
                           return (
-                            <span className="mx-2" key={index}>
-                              {i}
-                            </span>
+                            <li className="mx-2" key={index}>
+                              <TagOutlined /> <span>{i}</span>
+                            </li>
                           );
                         })}
                     </p>
@@ -131,7 +140,7 @@ const Page = () => {
                   <p>There Is No Review Yet</p>
                 </div>
               </div>
-              {/* Write  a review */}
+              {/* Write a review */}
               <div className="mb-20">
                 <h2 className="text-[30px] my-4 font-bold">Write a Review</h2>
                 <form>
@@ -160,7 +169,7 @@ const Page = () => {
               </div>
             </div>
           </div>
-          <div className="hidden md:block md:w-3/12 px-2">
+          <div className="hidden md:block md-w-3/12 px-2">
             <div className="max-w-[300px]">
               <h2 className="text-[60px] font-bold">Cart</h2>
               <div>
@@ -173,7 +182,7 @@ const Page = () => {
                 </h3>
               </div>
               <div className="flex justify-between">
-                <Button>Wiew Cart</Button>
+                <Button>View Cart</Button>
                 <Button>Checkout </Button>
               </div>
             </div>
