@@ -16,17 +16,52 @@ const Sider = () => {
         <div>
           <div className="my-6">
             <h2>
-              <Link href="/" className="text-white text-[20px]">
-                Manage Orders
+              <Link href="/overview" className="text-white text-[20px]">
+                Overview
               </Link>
             </h2>
-            <ul className="px-4 py-2 ">
-              <li>
-                <Link href="/" className="text-white my-2">
-                  Orders{" "}
+            <div className="my-4">
+              <h2>
+                <Link href="/orders" className="text-white text-[20px]">
+                  Manage Orders
                 </Link>
-              </li>
-            </ul>
+              </h2>
+              <ul className="px-4 py-2 ">
+                <li>
+                  <Link href="/orders" className="text-white my-2">
+                    Orders{" "}
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className="my-4">
+              <h2>
+                <Link href="/users" className="text-white text-[20px]">
+                  Manage Users
+                </Link>
+              </h2>
+              <ul className="px-4 py-2 ">
+                <li>
+                  <Link href="/users" className="text-white my-2">
+                    users{" "}
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className="my-4">
+              <h2>
+                <Link href="/adproducts" className="text-white text-[20px]">
+                  Add Products
+                </Link>
+              </h2>
+              <ul className="px-4 py-2 ">
+                <li>
+                  <Link href="/adproducts" className="text-white my-2">
+                    Add Products{" "}
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       ) : (

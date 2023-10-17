@@ -4,10 +4,12 @@ import Link from "next/link";
 import bgImage from "@/assets/images/menu.png";
 import Image from "next/image";
 import img from "@/assets/food/burger.png";
-import { Button } from "antd";
+import { Button, Result } from "antd";
 import { useCart } from "@/components/cartProvider/addToCart";
+import { useState } from "react";
 
 const page = () => {
+  const [successMessage, setSuccessMessage] = useState(false);
   const { cart, removeFromCart, getTotal } = useCart();
 
   return (
@@ -71,7 +73,7 @@ const page = () => {
                       <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                         <button
                           onClick={() => {
-                            console.log('clicked cart tn');
+                            console.log("clicked cart tn");
                             removeFromCart(car.id);
                           }}
                           className="bg-red px-4 py-2 text-[18px] text-white rounded-full flex items-center"
@@ -123,11 +125,35 @@ const page = () => {
             </h3>
             <hr />
             <div className="flex justify-end my-6">
-              <Button type="primary">Procced To Checkout</Button>
+              <Button
+                type="primary"
+                onClick={() => {
+                  setSuccessMessage(!successMessage);
+                }}
+              >
+                Confirm
+              </Button>
             </div>
           </div>
         </div>
       </div>
+      {successMessage && (
+        <div className="fixed bottom-40 bg-white w-full z-20 py-20">
+          <Result
+            status="success"
+            title="Successfully Your Order Placed"
+            subTitle="Order number: 2017182818828182881 10~15 Days, please wait."
+            extra={[
+              <Button type="primary" key="console">
+                <Link href="/menu">Go to Menu</Link>
+              </Button>,
+              <Button key="buy">
+                <Link href="/">Go Home</Link>
+              </Button>,
+            ]}
+          />
+        </div>
+      )}
     </div>
   );
 };

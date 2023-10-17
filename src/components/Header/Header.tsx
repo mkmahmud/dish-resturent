@@ -9,49 +9,33 @@ import {
   ShoppingCartOutlined,
   UserOutlined,
   LoginOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
 import { Button, Dropdown, MenuProps } from "antd";
 import { useRouter } from "next/navigation";
+import deleteCookie from "@/hooks/deleteCookie";
 
 const handleMenuClick: MenuProps["onClick"] = (e) => {
   console.log("click", e);
 };
-function deleteCookie(name: string) {
-  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-}
+
 // Event handler for the "Sign Out" button
-function handleSignOut() {
-  console.log('clicked sign');
-  deleteCookie('token');
-}
 
 const items = [
   {
-    key: '1',
-    label: 'Profile',
-    href: '/profile',
+    key: "1",
+    label: "Profile",
+    href: "/profile",
   },
   {
-    key: '2',
-    label: 'Settings',
-    href: '/settings',
+    key: "2",
+    label: "Settings",
+    href: "/settings",
   },
   {
-    key: '3',
-    label: 'Orders',
-    href: '/orders',
-  },
-  {
-    key: '4',
-    label: (
-      <Button
-        type="primary"
-        danger
-        onClick={handleSignOut}
-      >
-        Sign Out
-      </Button>
-    ),
+    key: "3",
+    label: "Orders",
+    href: "/orders",
   },
 ];
 const menuProps = {
@@ -59,14 +43,14 @@ const menuProps = {
   onClick: handleMenuClick,
 };
 
-
-
 const Navbar = () => {
   //user
   const [user, setUser] = useState<string | null>(null); // Provide initial state type
   const router = useRouter();
-
-
+  function handleSignOut() {
+    deleteCookie("token");
+    router.push("/login");
+  }
   useEffect(() => {
     // Check for authentication here (e.g., check if the token exists in the cookie)
     const token = document.cookie
@@ -188,14 +172,14 @@ const Navbar = () => {
               </div>
               <div>
                 {user ? (
-                  <Dropdown menu={{ items }} placement="bottom" arrow>
+                  <Link href="/profile">
                     <UserOutlined
                       className="text-[30px] cursor-pointer "
                       style={{ color: "#ff4221" }}
                     />
-                  </Dropdown>
+                  </Link>
                 ) : (
-                  <Link href="/profile" className="text-black">
+                  <Link href="/login" className="text-black">
                     <button className="bg-red px-4 py-2 text-[18px] text-white rounded-full flex items-center">
                       {" "}
                       <span className="px-2">Sign In</span> <LoginOutlined />
@@ -203,6 +187,20 @@ const Navbar = () => {
                   </Link>
                 )}
               </div>
+              {user ? (
+                <button
+                  onClick={() => {
+                    handleSignOut();
+                  }}
+                >
+                  <LogoutOutlined
+                    className="text-[30px] cursor-pointer pl-4 "
+                    style={{ color: "#ff4221" }}
+                  />
+                </button>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>
