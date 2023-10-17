@@ -1,8 +1,13 @@
-"use client";
+"use client"
+import React, { useEffect, useState } from "react";
 import { Table } from "antd";
-import { useEffect, useState } from "react";
+import useUserData from "@/hooks/useUserData";
 
-const user = () => {
+const User = () => {
+
+  const user = useUserData("user");
+  console.log(user, 'users')
+
   // Users
   const [users, setUsers] = useState([]);
   useEffect(() => {
@@ -15,7 +20,6 @@ const user = () => {
         console.error("Error:", error);
       });
   }, []);
- 
 
   const columns = [
     {
@@ -39,6 +43,7 @@ const user = () => {
       key: "username",
     },
   ];
+  
   return (
     <div>
       <h2 className="text-[30px] font-bold my-4">Users</h2>
@@ -49,4 +54,4 @@ const user = () => {
   );
 };
 
-export default user;
+export default User;

@@ -1,4 +1,4 @@
-"use client";
+import React, { useState } from "react"; // Import React from 'react'
 import SectionHead from "@/components/UI/SectionHead/SectionHead";
 import Link from "next/link";
 import bgImage from "@/assets/images/menu.png";
@@ -6,9 +6,8 @@ import Image from "next/image";
 import img from "@/assets/food/burger.png";
 import { Button, Result } from "antd";
 import { useCart } from "@/components/cartProvider/addToCart";
-import { useState } from "react";
 
-const page = () => {
+const Page = () => { // Rename 'page' to 'Page'
   const [successMessage, setSuccessMessage] = useState(false);
   const { cart, removeFromCart, getTotal } = useCart();
 
@@ -69,11 +68,11 @@ const page = () => {
               {cart &&
                 cart.map((car: any) => {
                   return (
-                    <tr>
+                    <tr key={car.id}> {/* Add 'key' prop */}
                       <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                         <button
                           onClick={() => {
-                            console.log("clicked cart tn");
+                            console.log("clicked cart item");
                             removeFromCart(car.id);
                           }}
                           className="bg-red px-4 py-2 text-[18px] text-white rounded-full flex items-center"
@@ -117,7 +116,7 @@ const page = () => {
             <h3 className="flex justify-between items-center font-semibold my-8">
               <span>Total:</span> <span>${getTotal()}</span>
             </h3>
-            <h3 className="flex justify-between items-center font-semibold my-8">
+            <h3 className="flex justify between items-center font-semibold my-8">
               <span>Shipping:</span> <span>$30.98</span>
             </h3>
             <h3 className="flex justify-between items-center font-semibold my-8">
@@ -158,4 +157,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page; // Export 'Page'

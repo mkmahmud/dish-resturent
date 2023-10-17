@@ -1,7 +1,9 @@
 "use client";
-import useUserData from "@/hooks/useUserData";
+import React from "react"; // Import React
 import { Table } from "antd";
 import Link from "next/link";
+import useUserData from "@/hooks/useUserData";
+
 const dataSource = [
   {
     key: "1",
@@ -49,12 +51,12 @@ const columns = [
   },
 ];
 
-const page = () => {
+const Page = () => {
   const user = useUserData("user");
 
   return (
     <div>
-      {/* USer Info */}
+      {/* User Info */}
       <div>
         <h2 className="text-[20px] ">Manage my account</h2>
         <div className="md:flex">
@@ -62,27 +64,29 @@ const page = () => {
             <h2 className="py-4 text-[16px] font-semibold">
               Personal Profile <Link href="/profile/edit">[ Edit ]</Link>
             </h2>
-            <h2 className=" text-[16px]">{user?.username}</h2>
-            <h2 className=" text-[16px]">{user?.email}</h2>
+            <h2 className=" text-[16px]">{user ? user?.username : ""}</h2>
+            <h2 className=" text-[16px]">{user ? user?.email : ""}</h2>
           </div>
           <div className="p-4 bg-white text-black m-4 w-full md:w-1/2">
             <h2 className="py-4 text-[16px] font-semibold">Address</h2>
             <h2 className="py-2 text-[16px]">
-              <strong>{user?.username}</strong>
+              <strong>{user ? user?.username : ""}</strong>
             </h2>
             <h2 className="py-2 text-[16px]">
               <Link href="/profile/edit">Add Adress</Link>
             </h2>
-            <h2 className="text-[16px]">(+880) {user?.phoneNumber}</h2>
+            <h2 className="text-[16px]">
+              (+880) {user ? user?.phoneNumber : ""}
+            </h2>
           </div>
         </div>
       </div>
-      {/* latest Orders */}
+      {/* Latest Orders */}
       <div className="bg-white">
-        <Table dataSource={dataSource} columns={columns} />;
+        <Table dataSource={dataSource} columns={columns} />
       </div>
     </div>
   );
 };
 
-export default page;
+export default Page;

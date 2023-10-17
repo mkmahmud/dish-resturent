@@ -1,18 +1,18 @@
 "use client";
 import useUserData from "@/hooks/useUserData";
-import Link from "next/link";
-import { useState } from "react";
+import Link from "next/link"; 
 
 const Sider = () => {
   const user = useUserData("user");
-  return (
+  // console.log(user)
+   return (
     <div>
       <h3 className="text-[18px]">
         Hello <strong>{user?.username} </strong>
       </h3>
       {/* User */}
 
-      {user.role === "admin" && user?.email ? (
+      {user?.role === "admin" && user?.email ? (
         <div>
           <div className="my-6">
             <h2>
@@ -50,7 +50,7 @@ const Sider = () => {
             </div>
             <div className="my-4">
               <h2>
-                <Link href="/adproducts" className="text-white text-[20px]">
+                <Link href="/addproducts" className="text-white text-[20px]">
                   Add Products
                 </Link>
               </h2>

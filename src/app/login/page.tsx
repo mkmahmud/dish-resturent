@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import useCookieData from "@/hooks/useUser";
+import Cookies from 'js-cookie';
 
 const SignUp = () => {
   const router = useRouter();
@@ -47,8 +48,11 @@ const SignUp = () => {
           cookie.startsWith("token=")
         );
         const retrievedToken = tokenCookie ? tokenCookie.split("=")[1] : null;
-        localStorage.setItem("user", JSON.stringify(data.user));
-        router.push("/protected");
+        const userData = data.user;
+ 
+        Cookies.set('user', JSON.stringify(userData), { expires: 7 }); // Store the JSON string
+
+        router.push("/profile");
       })
       .catch((error) => {
         console.error("Error:", error);

@@ -237,9 +237,9 @@ const Page = () => {
               <div>
                 {data &&
                   cart &&
-                  cart.map((car: any) => {
+                  cart.map((car: any, index) => {
                     // console.log(car.id);
-                    return <MiniCart data={car} />;
+                    return <MiniCart key={index} data={car} />;
                   })}
               </div>
               <div>
