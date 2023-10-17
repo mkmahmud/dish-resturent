@@ -19,8 +19,9 @@ import spoonIcon from "@/assets/icons/about/1.png";
 import ReviewCard from "@/components/UI/Cards/ReviewCard/ReviewCard";
 import tomato from "@/assets/images/bgImages/tomato.png";
 import cheese from "@/assets/images/bgImages/cheese.png";
-
+ 
 const HomePage = () => {
+ 
   const [imageData, setimageData] = useState([]);
 
   useEffect(() => {

@@ -7,28 +7,64 @@ import Search from "antd/es/input/Search";
 import bgImage from "@/assets/images/menu.png";
 import Link from "next/link";
 import React, { useEffect, useState } from "react"; // Import React and React Hooks
-
-const handleChange = (value: string) => {
-  console.log(`selected ${value}`);
-};
-const onSearch = (value: any) => console.log(value);
+import { useSearchParams } from "next/navigation";
 
 const Page = () => {
-  const [imageData, setimageData] = useState([]);
+  const searchParams = useSearchParams();
+  const [data, setData] = useState([]);
+
+  // Get the query parameter from the URL
+  const search = searchParams.get("search");
+  // use short and filter
+  const [short, setShort] = useState("");
+  const [filter, setFilter] = useState("");
+  const [onPageSearch, setonPageSearch] = useState("");
+
+  const handleChangesort = (value: string) => {
+    setShort(value);
+    const sortedData = data
+      .slice()
+      .sort((a: { id: number }, b: { id: number }) => b.id - a.id);
+    setData(sortedData);
+  };
+  const handleChangeOptions = (value: string) => {
+    setFilter(value);
+    const sortedData = data
+      .slice()
+      .sort((a: { price: number }, b: { price: number }) => a.price - b.price);
+    setData(sortedData);
+  };
+  const onSearch = (value: any) => {
+    const filtered = data.filter((item: any) => {
+      // Replace 'fieldName' with the name of the field you want to search in
+      const fieldValue = item.name.toLowerCase();
+      return fieldValue.includes(value.toLowerCase());
+    });
+    setData(filtered);
+  };
 
   useEffect(() => {
-    fetch("https://dish-backend.vercel.app/products/")
+    fetch("http://localhost:5000/products/")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        setimageData(data);
+        if (search) {
+          const filtered = data.filter((item: any) => {
+            // Replace 'fieldName' with the name of the field you want to search in
+            const fieldValue = item.name.toLowerCase();
+            return fieldValue.includes(search.toLowerCase());
+          });
+          setData(filtered);
+        } else {
+          // If there's no search parameter, set filteredData to the full data
+          setData(data);
+        }
       });
-  }, []);
+  }, [search]);
 
   return (
     <div>
       <div
-        className="h-[300px] bg-white w-full mb-10 flex items-end	 absolute top-0"
+        className="h-[300px] bg-white w-full mb-10 flex items-end	 absolute top-0 "
         style={{
           backgroundImage: `url(${bgImage.src})`, // Use footerImage.src
           backgroundSize: "cover",
@@ -57,7 +93,7 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="mt-[300px]">
+      <div className="mt-[300px] pb-10">
         {/*  Products */}
 
         <div className="md:flex px-4 lg:px-10 w-full">
@@ -106,30 +142,24 @@ const Page = () => {
           <div className="w-full md:w-10/12 px-2 md:px-6">
             <div className="md:flex justify-between items-center text-[20px]     mx-auto py-2 px-4 border  border-white rounded-lg">
               <div className="flex">
-                <p className="pr-2">ShortBy </p>
+                <p className="pr-2">SortBy </p>
                 <Space wrap>
                   <Select
                     defaultValue="Featured"
                     style={{ width: 120 }}
-                    onChange={handleChange}
-                    options={[
-                      { value: "Featured", label: "Featured" },
-                      { value: "Best Selling", label: "Best Selling" },
-                    ]}
+                    onChange={handleChangesort}
+                    options={[{ value: "NewArival", label: "New Arival" }]}
                   />
                 </Space>
               </div>
               <div className="flex">
-                <p className="pr-2">Pageinate </p>
+                <p className="pr-2">Options </p>
                 <Space wrap>
                   <Select
                     defaultValue="Featured"
                     style={{ width: 120 }}
-                    onChange={handleChange}
-                    options={[
-                      { value: "Featured", label: "Featured" },
-                      { value: "Best Selling", label: "Best Selling" },
-                    ]}
+                    onChange={handleChangeOptions}
+                    options={[{ value: "Price", label: "Price" }]}
                   />
                 </Space>
               </div>
@@ -151,20 +181,12 @@ const Page = () => {
               </div>
             </div>
             <Row gutter={[16, 16]}>
-              {imageData.map((image, index) => (
+              {data.map((image, index) => (
                 <Col key={index} xs={24} sm={12} md={12} lg={8} xl={8}>
                   <FoodCard data={image} />
                 </Col>
               ))}
             </Row>
-            <div className="border-2 border-white p-2 bg-white flex justify-center rounded-full my-10">
-              <Pagination
-                defaultCurrent={6}
-                total={500}
-                className="mx-auto"
-                style={{ color: "white" }}
-              />
-            </div>{" "}
           </div>
         </div>
       </div>

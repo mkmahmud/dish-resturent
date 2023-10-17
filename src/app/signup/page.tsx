@@ -5,22 +5,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import useCookieData from "@/hooks/useUser";
 
 const SignUp = () => {
   const router = useRouter();
 
- 
-  useEffect(() => {
-    // Check for authentication here (e.g., check if the token exists in the cookie)
-    const token = document.cookie
-      .split("; ")
-      .find((cookie) => cookie.startsWith("token="))
-      ?.split("=")[1];
+  const token = useCookieData("token");
 
-    if (token) { 
-      router.push("/"); // Redirect to the login page if not authenticated
-    }
-  }, [router]);
+  if (token) {
+    router.push("/");
+  } 
   type Inputs = {
     username: string;
     email: string;
@@ -48,8 +42,8 @@ const SignUp = () => {
 
         // Set the token as a cookie
         document.cookie = `token=${token}`;
-        router.push("/protected")
-
+        localStorage.setItem("user", JSON.stringify(data.user));
+        router.push("/protected");
       });
   };
 

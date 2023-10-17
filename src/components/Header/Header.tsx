@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/logo.png";
 import Image from "next/image";
 import {
@@ -11,55 +11,72 @@ import {
   LoginOutlined,
 } from "@ant-design/icons";
 import { Button, Dropdown, MenuProps } from "antd";
+import { useRouter } from "next/navigation";
 
 const handleMenuClick: MenuProps["onClick"] = (e) => {
   console.log("click", e);
 };
+function deleteCookie(name: string) {
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+}
+// Event handler for the "Sign Out" button
+function handleSignOut() {
+  console.log('clicked sign');
+  deleteCookie('token');
+}
 
-const items: MenuProps["items"] = [
+const items = [
   {
-    key: "1",
-    label: (
-      <Link rel="noopener noreferrer" href="/profile">
-        Profile
-      </Link>
-    ),
+    key: '1',
+    label: 'Profile',
+    href: '/profile',
   },
   {
-    key: "2",
-    label: (
-      <Link rel="noopener noreferrer" href="/profile">
-        Settings
-      </Link>
-    ),
+    key: '2',
+    label: 'Settings',
+    href: '/settings',
   },
   {
-    key: "3",
-    label: (
-      <Link rel="noopener noreferrer" href="/profile">
-        Orders
-      </Link>
-    ),
+    key: '3',
+    label: 'Orders',
+    href: '/orders',
   },
   {
-    key: "4",
+    key: '4',
     label: (
-      <Link rel="noopener noreferrer" href="/api/auth/signout">
-        <Button type="primary" danger>
-          Sign Out
-        </Button>
-      </Link>
+      <Button
+        type="primary"
+        danger
+        onClick={handleSignOut}
+      >
+        Sign Out
+      </Button>
     ),
   },
 ];
-
 const menuProps = {
   items,
   onClick: handleMenuClick,
 };
 
+
+
 const Navbar = () => {
   //user
+  const [user, setUser] = useState<string | null>(null); // Provide initial state type
+  const router = useRouter();
+
+
+  useEffect(() => {
+    // Check for authentication here (e.g., check if the token exists in the cookie)
+    const token = document.cookie
+      .split("; ")
+      .find((cookie) => cookie.startsWith("token="))
+      ?.split("=")[1];
+    if (token) {
+      setUser(token);
+    }
+  }, [router]);
 
   // Mobile Menu
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -170,21 +187,21 @@ const Navbar = () => {
                 </Link>
               </div>
               <div>
-                {/* {data ? (
+                {user ? (
                   <Dropdown menu={{ items }} placement="bottom" arrow>
                     <UserOutlined
                       className="text-[30px] cursor-pointer "
                       style={{ color: "#ff4221" }}
                     />
                   </Dropdown>
-                ) : ( */}
-                <Link href="/profile" className="text-black">
-                  <button className="bg-red px-4 py-2 text-[18px] text-white rounded-full flex items-center">
-                    {" "}
-                    <span className="px-2">Sign In</span> <LoginOutlined />
-                  </button>
-                </Link>
-                {/* )} */}
+                ) : (
+                  <Link href="/profile" className="text-black">
+                    <button className="bg-red px-4 py-2 text-[18px] text-white rounded-full flex items-center">
+                      {" "}
+                      <span className="px-2">Sign In</span> <LoginOutlined />
+                    </button>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
