@@ -1,5 +1,6 @@
 "use client";
-import { Table } from "antd"; 
+import useUserData from "@/hooks/useUserData";
+import { Table } from "antd";
 import Link from "next/link";
 const dataSource = [
   {
@@ -48,7 +49,9 @@ const columns = [
   },
 ];
 
-const page = () => { 
+const page = () => {
+  const user = useUserData("user");
+
   return (
     <div>
       {/* USer Info */}
@@ -56,19 +59,21 @@ const page = () => {
         <h2 className="text-[20px] ">Manage my account</h2>
         <div className="md:flex">
           <div className="p-4 bg-white text-black my-4 w-full md:w-1/2">
-            <h2 className="py-4 text-[16px] font-semibold">Personal Profile <Link href='/profile/edit'>[ Edit ]</Link></h2>
-            <h2 className=" text-[16px]">Mahmudul Hasan MK</h2>
-            <h2 className=" text-[16px]">mahmudul@gmail.com</h2>
+            <h2 className="py-4 text-[16px] font-semibold">
+              Personal Profile <Link href="/profile/edit">[ Edit ]</Link>
+            </h2>
+            <h2 className=" text-[16px]">{user?.username}</h2>
+            <h2 className=" text-[16px]">{user?.email}</h2>
           </div>
           <div className="p-4 bg-white text-black m-4 w-full md:w-1/2">
             <h2 className="py-4 text-[16px] font-semibold">Address</h2>
             <h2 className="py-2 text-[16px]">
-              <strong>Mahmudul Hasan MK</strong>
+              <strong>{user?.username}</strong>
             </h2>
             <h2 className="py-2 text-[16px]">
-              Dhaka, Bangladesh, Earth, MilkyWay
+              <Link href="/profile/edit">Add Adress</Link>
             </h2>
-            <h2 className="text-[16px]">(+880) 2134645721</h2>
+            <h2 className="text-[16px]">(+880) {user?.phoneNumber}</h2>
           </div>
         </div>
       </div>
