@@ -1,9 +1,10 @@
 "use client";
 
-import { Layout, Space } from "antd";
+import { FloatButton, Layout, Space } from "antd";
 import Navbar from "../Header/Header";
 import Footer from "../Footer/Footer";
 import ScrollToTopButton from "../ScrollToTop/ScrollToTop";
+import Feedback from "../UI/Feedback/Feedback";
 
 const { Content } = Layout;
 
@@ -16,6 +17,7 @@ const MainLayout = ({ children }: any) => {
         {children}
         <ScrollToTopButton />
       </Content>
+      <Feedback />
       <Footer />
     </Layout>
   );
