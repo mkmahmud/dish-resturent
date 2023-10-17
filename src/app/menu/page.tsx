@@ -181,9 +181,9 @@ const Page = () => {
               </div>
             </div>
             <Row gutter={[16, 16]}>
-              {data.map((image, index) => (
+              {data.map((productData, index) => (
                 <Col key={index} xs={24} sm={12} md={12} lg={8} xl={8}>
-                  <FoodCard data={image} />
+                  <FoodCard data={productData} />
                 </Col>
               ))}
             </Row>

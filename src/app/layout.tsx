@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import MainLayout from "@/components/layout/MainLayout";
+import { CartProvider } from "@/components/cartProvider/addToCart";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,9 @@ export default function RootLayout({
     <html className="scroll-smooth" lang="en">
       <body className={inter.className}>
         <StyledComponentsRegistry>
-          <MainLayout>{children}</MainLayout>
+          <CartProvider>
+            <MainLayout>{children}</MainLayout>
+          </CartProvider>
         </StyledComponentsRegistry>
       </body>
     </html>

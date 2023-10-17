@@ -11,8 +11,10 @@ import SectionHead from "@/components/UI/SectionHead/SectionHead";
 import bgImage from "@/assets/images/menu.png";
 import FoodCard from "@/components/UI/Cards/FoodCard/FoodCard";
 import useCookieData from "@/hooks/useUser";
+import { useCart } from "@/components/cartProvider/addToCart";
 
 interface ProductData {
+  id: number;
   status: boolean;
   name?: string;
   price?: number;
@@ -24,6 +26,9 @@ interface ProductData {
 const Page = () => {
   // user
   const token = useCookieData("token");
+
+  // Add to cart
+  const { cart, addToCart, getTotal } = useCart();
 
   const { id } = useParams();
   const [data, setData] = useState<ProductData | null>({} as ProductData);
@@ -119,20 +124,26 @@ const Page = () => {
                     </p>
                   </div>
                   <div className="flex space-x-2 my-6">
-                    <button className="bg-red px-4 py-2 text-[18px] text-white rounded-full flex items-center">
-                      {" "}
-                      <span className="px-2">
-                        {data && data.status ? "Available" : "Out of Stock"}
-                      </span>
-                    </button>
                     <button className="bg-white px-4 py-2 text-[18px] text-red rounded-full flex items-center">
                       {" "}
                       <span className="px-2">1</span>
                     </button>{" "}
-                    <button className="bg-red px-4 py-2 text-[18px] text-white rounded-full flex items-center">
-                      {" "}
-                      <span className="px-2">Add To cart</span>
-                    </button>
+                    {data && data.status ? (
+                      <button
+                        onClick={() => data && addToCart(data)}
+                        className="bg-red px-4 py-2 text-[18px] text-white rounded-full flex items-center"
+                      >
+                        {" "}
+                        <span className="px-2">Add To cart</span>
+                      </button>
+                    ) : (
+                      <button className="bg-red px-4 py-2 text-[18px] text-white rounded-full flex items-center">
+                        {" "}
+                        <span className="px-2">
+                          {data && data.status ? "Available" : "Out of Stock"}
+                        </span>
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -224,17 +235,25 @@ const Page = () => {
             <div className="max-w-[300px]">
               <h2 className="text-[60px] font-bold">Cart</h2>
               <div>
-                <MiniCart />
-                <MiniCart />
+                {data &&
+                  cart &&
+                  cart.map((car: any) => {
+                    // console.log(car.id);
+                    return <MiniCart data={car} />;
+                  })}
               </div>
               <div>
                 <h3 className="flex justify-between items-center font-semibold my-4">
-                  <span>Subtotal:</span> <span>$30.98</span>
+                  <span>Subtotal:</span> <span>${getTotal()}</span>
                 </h3>
               </div>
               <div className="flex justify-between">
-                <Button>View Cart</Button>
-                <Button>Checkout </Button>
+                <button className="bg-red px-4 py-2 text-[18px] rounded-full flex items-center">
+                  <Link className=" text-white" href="/cart">View Cart</Link>
+                </button>
+                <button className="bg-red px-4 py-2 text-[18px] rounded-full flex items-center">
+                  <Link className=" text-white" href="/cart">Checkout</Link>
+                </button>
               </div>
             </div>
           </div>

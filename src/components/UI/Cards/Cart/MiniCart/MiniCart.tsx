@@ -1,17 +1,32 @@
 import Image from "next/image";
 import cartImage from "@/assets/icons/home2.png";
 import { CloseOutlined } from "@ant-design/icons";
+import { useCart } from "@/components/cartProvider/addToCart";
 
-const MiniCart = () => {
+const MiniCart = ({ data }: any) => {
+  const { removeFromCart } = useCart();
+
   return (
     <div className="flex justify-between items-center  border-b border-gray py-4">
-      <Image alt="Cart" src={cartImage} className="h-[100px] w-[100px]" />
+      <Image
+        alt="Cart"
+        height={80}
+        width={80}
+        src={data?.img}
+        className="h-[100px] w-[100px]"
+      />
       <div>
-        <h2>Buffolo Chicken</h2>
-        <p>1 x $10.90</p>
+        <h2>{data?.name}</h2>
+        <p>1 x ${data?.price}</p>
       </div>
       <div>
-        <CloseOutlined />
+        <button
+          onClick={() => {
+            removeFromCart(data?.id);
+          }}
+        >
+          <CloseOutlined />
+        </button>
       </div>
     </div>
   );

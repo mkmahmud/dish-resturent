@@ -2,13 +2,14 @@
 import SectionHead from "@/components/UI/SectionHead/SectionHead";
 import Link from "next/link";
 import bgImage from "@/assets/images/menu.png";
- import Image from "next/image";
+import Image from "next/image";
 import img from "@/assets/food/burger.png";
 import { Button } from "antd";
-
- 
+import { useCart } from "@/components/cartProvider/addToCart";
 
 const page = () => {
+  const { cart, removeFromCart, getTotal } = useCart();
+
   return (
     <div>
       <div
@@ -63,50 +64,43 @@ const page = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  X
-                </td>
-                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 flex items-center">
-                  <Image
-                    alt="Product"
-                    src={img}
-                    className="h-[80px] w-[80px] mx-2"
-                  />
-                  <span> Product 1</span>{" "}
-                </td>
-                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  $10.00
-                </td>
-                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  1
-                </td>
-                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  $10.00
-                </td>
-              </tr>
-              <tr>
-                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  X
-                </td>
-                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 flex items-center">
-                  <Image
-                    alt="Product"
-                    src={img}
-                    className="h-[80px] w-[80px] mx-2"
-                  />
-                  <span> Product 1</span>{" "}
-                </td>
-                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  $10.00
-                </td>
-                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  1
-                </td>
-                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                  $10.00
-                </td>
-              </tr>
+              {cart &&
+                cart.map((car: any) => {
+                  return (
+                    <tr>
+                      <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <button
+                          onClick={() => {
+                            console.log('clicked cart tn');
+                            removeFromCart(car.id);
+                          }}
+                          className="bg-red px-4 py-2 text-[18px] text-white rounded-full flex items-center"
+                        >
+                          X
+                        </button>
+                      </td>
+                      <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 flex items-center">
+                        <Image
+                          alt="Product"
+                          src={car?.img}
+                          className="h-[80px] w-[80px] mx-2"
+                          height={80}
+                          width={80}
+                        />
+                        <span>{car?.name}</span>{" "}
+                      </td>
+                      <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                        ${car?.price}
+                      </td>
+                      <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                        1
+                      </td>
+                      <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                        $10.00
+                      </td>
+                    </tr>
+                  );
+                })}
             </tbody>
           </table>
           <div className="flex items-center my-10">
@@ -119,7 +113,7 @@ const page = () => {
             <h2 className="text-[30px] my-6 font-bold">Cart Total</h2>
             <hr />
             <h3 className="flex justify-between items-center font-semibold my-8">
-              <span>Total:</span> <span>$30.98</span>
+              <span>Total:</span> <span>${getTotal()}</span>
             </h3>
             <h3 className="flex justify-between items-center font-semibold my-8">
               <span>Shipping:</span> <span>$30.98</span>
