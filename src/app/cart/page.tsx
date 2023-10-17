@@ -1,9 +1,9 @@
+"use client"
 import React, { useState } from "react"; // Import React from 'react'
 import SectionHead from "@/components/UI/SectionHead/SectionHead";
 import Link from "next/link";
 import bgImage from "@/assets/images/menu.png";
 import Image from "next/image";
-import img from "@/assets/food/burger.png";
 import { Button, Result } from "antd";
 import { useCart } from "@/components/cartProvider/addToCart";
 

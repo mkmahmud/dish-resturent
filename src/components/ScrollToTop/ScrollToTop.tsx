@@ -25,7 +25,7 @@ const ScrollToTopButton = () => {
     return () => {
       window.removeEventListener("scroll", checkScrollTop);
     };
-  }, [isVisible]);
+  }, []);
 
   return (
     <button
