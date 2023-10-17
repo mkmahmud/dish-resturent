@@ -27,7 +27,7 @@ const SignUp = () => {
     formState: { errors },
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (userData) => {
-    fetch("http://localhost:5000/login", {
+    fetch("https://dish-backend.vercel.app/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json", // Specify the content type

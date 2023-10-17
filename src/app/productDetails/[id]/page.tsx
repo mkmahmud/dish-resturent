@@ -34,7 +34,7 @@ const Page = () => {
   const [data, setData] = useState<ProductData | null>({} as ProductData);
   const [relatedProduct, setrelatedProduct] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/products/${id}`)
+    fetch(`https://dish-backend.vercel.app/products/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -49,7 +49,7 @@ const Page = () => {
         console.error("Error Fetching data:", error);
       });
 
-    fetch("http://localhost:5000/products/")
+    fetch("https://dish-backend.vercel.app/products/")
       .then((response) => response.json())
       .then((data) => {
         // Sort the related products by price in ascending order

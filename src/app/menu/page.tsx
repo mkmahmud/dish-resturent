@@ -44,7 +44,7 @@ const Page = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/products/")
+    fetch("https://dish-backend.vercel.app/products/")
       .then((response) => response.json())
       .then((data) => {
         if (search) {
